@@ -20,8 +20,6 @@ func getInput() []string {
 }
 
 func pt1(lines []string) int {
-	fmt.Println("pt1")
-
 	mandatory := map[string]bool{
 		"byr": true,
 		"iyr": true,
@@ -58,5 +56,38 @@ func pt1(lines []string) int {
 }
 
 func pt2(lines []string) int {
-	return -1
+	mandatory := map[string]bool{
+		"byr": true,
+		"iyr": true,
+		"eyr": true,
+		"hgt": true,
+		"hcl": true,
+		"ecl": true,
+		"pid": true,
+	}
+
+	current := map[string]bool{}
+	re := regexp.MustCompile(`(\w+)\:(.+)`)
+
+	valids := 0
+
+	for _, line := range lines {
+		if line == "" {
+			// fmt.Println("new passport")
+			// fmt.Println(current)
+			if len(current) == len(mandatory) {
+				valids++
+			}
+			current = map[string]bool{}
+			continue
+		}
+		for _, sub := range strings.Split(line, " ") {
+			match := re.FindStringSubmatch(sub)
+			fmt.Println("match:", match)
+			if mandatory[match[1]] {
+				current[match[1]] = true
+			}
+		}
+	}
+	return valids
 }

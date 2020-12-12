@@ -41,6 +41,8 @@ func pt1(input []int) int {
 }
 
 func pt2(input []int) int {
+	// this is not so "smart" but the input is small enough to handle a "dumb"
+	// solution, evolving in around O(n^3) ops
 	for i := 0; i < len(input)-2; i++ {
 		for j := i; j < len(input)-1; j++ {
 			for z := j; z < len(input); z++ {
