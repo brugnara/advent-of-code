@@ -13,15 +13,18 @@ type slope struct {
 // https://adventofcode.com/2020/day/3
 
 func main() {
-	raw, _ := ioutil.ReadFile("./input.txt")
-	lines := strings.Split(string(raw), "\n")
+	lines := getInput()
 
-	pt1(lines)
-	pt2(lines)
+	fmt.Println("PT1:", pt1(lines))
+	fmt.Println("PT2:", pt2(lines))
 }
 
-func pt1(lines []string) {
-	fmt.Println("pt1")
+func getInput() []string {
+	raw, _ := ioutil.ReadFile("./input.txt")
+	return strings.Split(string(raw), "\n")
+}
+
+func pt1(lines []string) int {
 	cols := len(lines[0])
 
 	trees := 0
@@ -34,11 +37,10 @@ func pt1(lines []string) {
 			trees++
 		}
 	}
-	fmt.Println("Trees:", trees)
+	return trees
 }
 
-func pt2(lines []string) {
-	fmt.Println("pt2")
+func pt2(lines []string) int {
 	rows := len(lines)
 	cols := len(lines[0])
 
@@ -69,5 +71,5 @@ func pt2(lines []string) {
 
 		result *= trees
 	}
-	fmt.Println("Trees:", result)
+	return result
 }

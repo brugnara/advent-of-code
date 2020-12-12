@@ -11,14 +11,17 @@ import (
 // https://adventofcode.com/2020/day/2
 
 func main() {
-	raw, _ := ioutil.ReadFile("./input.txt")
-	lines := strings.Split(string(raw), "\n")
-
-	pt1(lines)
-	pt2(lines)
+	lines := getInput()
+	fmt.Println("PT1:", pt1(lines))
+	fmt.Println("PT2:", pt2(lines))
 }
 
-func pt2(lines []string) {
+func getInput() []string {
+	raw, _ := ioutil.ReadFile("./input.txt")
+	return strings.Split(string(raw), "\n")
+}
+
+func pt2(lines []string) int {
 	valids := 0
 
 	for _, line := range lines {
@@ -42,10 +45,10 @@ func pt2(lines []string) {
 		}
 	}
 
-	fmt.Println("Valids:", valids)
+	return valids
 }
 
-func pt1(lines []string) {
+func pt1(lines []string) int {
 	valids := 0
 
 	for _, line := range lines {
@@ -66,5 +69,5 @@ func pt1(lines []string) {
 			valids++
 		}
 	}
-	fmt.Println("total valids are:", valids)
+	return valids
 }
