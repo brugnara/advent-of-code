@@ -11,7 +11,7 @@ func TestPt1(t *testing.T) {
 
 func TestPt2(t *testing.T) {
 	output := pt2(getInput())
-	if output != 1 {
+	if output != 145 {
 		t.Error("Invalid output:", output)
 	}
 }
