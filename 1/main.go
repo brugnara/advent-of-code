@@ -2,6 +2,12 @@ package main
 
 import "fmt"
 
+// https://adventofcode.com/2020/day/2
+
+func main() {
+	//
+}
+
 func byTwo(input []int) {
 	for i := 0; i < len(input)-1; i++ {
 		for j := i; j < len(input); j++ {

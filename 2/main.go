@@ -8,6 +8,8 @@ import (
 	"strings"
 )
 
+// https://adventofcode.com/2020/day/2
+
 func main() {
 	raw, _ := ioutil.ReadFile("./input.txt")
 	lines := strings.Split(string(raw), "\n")
