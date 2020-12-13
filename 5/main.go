@@ -6,7 +6,7 @@ import (
 	"strings"
 )
 
-// https://adventofcode.com/2020/day/4
+// https://adventofcode.com/2020/day/5
 
 func main() {
 	lines := getInput()
