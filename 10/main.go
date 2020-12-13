@@ -42,6 +42,15 @@ func pt1(input []int) int {
 	return hash[1] * hash[3]
 }
 
-func pt2(input []int) int {
-	return -1
+func pt2(input []int) uint64 {
+	hash := map[int]uint64{}
+	hash[0] = 1
+	max := 1
+	for _, nr := range input {
+		hash[nr] = hash[nr-1] + hash[nr-3] + hash[nr-2]
+		if nr > max {
+			max = nr
+		}
+	}
+	return hash[max]
 }
