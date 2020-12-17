@@ -3,7 +3,7 @@ Advent of Code
 
 ## My solutions for Advent of Code
 
-I solved every "year" using a different language.
+Solving every "year" using a different language.
 
 ### 2015
 > https://adventofcode.com/2015
