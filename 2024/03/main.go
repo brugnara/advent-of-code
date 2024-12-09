@@ -13,21 +13,25 @@ func getInput() (ret []string) {
 	return strings.Split(string(raw), "\n")
 }
 
+func computeMul(tuples []string) (count int) {
+	numbers := strings.Split(tuples[1], ",")
+
+	n1, err1 := strconv.Atoi(numbers[0])
+	n2, err2 := strconv.Atoi(numbers[1])
+
+	if err1 != nil || err2 != nil {
+		return 0
+	}
+
+	return n1 * n2
+}
+
 func pt1(lines []string) (count int) {
 	re := regexp.MustCompile(`mul\((\d+,\d+)\)`)
 
 	for _, line := range lines {
 		for _, tuples := range re.FindAllStringSubmatch(line, -1) {
-			numbers := strings.Split(tuples[1], ",")
-
-			n1, err1 := strconv.Atoi(numbers[0])
-			n2, err2 := strconv.Atoi(numbers[1])
-
-			if err1 != nil || err2 != nil {
-				continue
-			}
-
-			count += n1 * n2
+			count += computeMul(tuples)
 		}
 	}
 
@@ -35,6 +39,34 @@ func pt1(lines []string) (count int) {
 }
 
 func pt2(lines []string) (count int) {
+	do := true
+	reDo := regexp.MustCompile(`^do\(\)`)
+	reDont := regexp.MustCompile(`^don't\(\)`)
+	reMul := regexp.MustCompile(`^mul\((\d+,\d+)\)`)
+
+	for _, line := range lines {
+		for i := 0; i < len(line); i++ {
+			subLine := line[i:]
+			if reDo.MatchString(subLine) {
+				do = true
+				continue
+			}
+
+			if reDont.MatchString(subLine) {
+				do = false
+				continue
+			}
+
+			match := reMul.FindStringSubmatch(subLine)
+
+			if len(match) == 0 || !do {
+				continue
+			}
+
+			count += computeMul(match)
+
+		}
+	}
 	return
 }
 
